@@ -1,39 +1,259 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0d0811">
-<title>موعدنا</title>
-<style>
-:root{--cream:#fff1e9;--muted:#d9c2c4;--glass:rgba(25,13,30,.74)}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;background:#0d0811;color:#fff}
-body{overflow-x:hidden}
-.scene{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;padding:52px 18px 30px;overflow:hidden;background:radial-gradient(circle at 73% 25%,rgba(178,82,120,.22),transparent 31%),radial-gradient(circle at 14% 86%,rgba(110,45,80,.22),transparent 34%),linear-gradient(180deg,#09070e 0%,#211225 54%,#100914 100%)}
-.scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(8,4,12,.78));pointer-events:none}
-.stars{position:absolute;inset:0;pointer-events:none}.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;box-shadow:0 0 7px #fff;animation:twinkle 3.4s ease-in-out infinite}@keyframes twinkle{0%,100%{opacity:.18;transform:scale(.8)}50%{opacity:.9;transform:scale(1.25)}}
-.moon{position:absolute;top:7%;right:8%;width:58px;height:58px;border-radius:50%;box-shadow:-12px 0 0 #ffd7c6;filter:drop-shadow(0 0 16px rgba(255,215,198,.34));opacity:.9}
-.rose-wrap{position:absolute;left:-20px;bottom:-28px;width:min(42vw,350px);height:min(58vh,560px);opacity:.82;filter:drop-shadow(0 25px 45px rgba(0,0,0,.5));z-index:1}
-.dome{position:absolute;left:12%;bottom:9%;width:76%;height:78%;border-radius:48% 48% 18% 18%/33% 33% 12% 12%;border:2px solid rgba(255,236,229,.26);background:linear-gradient(100deg,rgba(255,255,255,.08),rgba(255,255,255,.015) 44%,rgba(255,255,255,.05));box-shadow:inset 12px 0 24px rgba(255,255,255,.05),0 0 35px rgba(225,135,138,.09);overflow:hidden}.dome:before{content:"";position:absolute;top:6%;left:16%;width:9%;height:68%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.2),transparent);filter:blur(2px);transform:rotate(7deg)}
-.base{position:absolute;left:5%;bottom:2%;width:90%;height:12%;border-radius:50%;background:linear-gradient(180deg,#4b2d2b,#211313 55%,#0e0809);box-shadow:0 12px 25px rgba(0,0,0,.55),inset 0 2px 4px rgba(255,222,184,.22)}
-.stem{position:absolute;left:49%;bottom:16%;width:5px;height:51%;background:linear-gradient(90deg,#18321d,#48633a,#132718);border-radius:5px;transform:rotate(-2deg)}
-.leaf{position:absolute;width:61px;height:29px;background:linear-gradient(145deg,#3f6540,#172b1d);border-radius:100% 0 100% 0;filter:drop-shadow(0 5px 5px rgba(0,0,0,.28))}.l1{left:47%;bottom:42%;transform:rotate(-26deg)}.l2{left:29%;bottom:34%;transform:scaleX(-1) rotate(-28deg)}.l3{left:46%;bottom:25%;transform:rotate(-18deg) scale(.8)}
-.flower{position:absolute;left:29%;bottom:63%;width:112px;height:102px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.35))}.petal-shape{position:absolute;left:50%;top:52%;width:62px;height:50px;margin-left:-31px;margin-top:-25px;border-radius:62% 38% 58% 42%;background:radial-gradient(circle at 60% 35%,#eeabb0,#b64e62 50%,#6f2637 85%);transform-origin:center}.p1{transform:rotate(0deg) translateY(-17px)}.p2{transform:rotate(58deg) translateY(-17px)}.p3{transform:rotate(116deg) translateY(-17px)}.p4{transform:rotate(174deg) translateY(-17px)}.p5{transform:rotate(232deg) translateY(-17px)}.p6{transform:rotate(290deg) translateY(-17px)}.core{position:absolute;left:33px;top:29px;width:46px;height:43px;border-radius:50%;background:radial-gradient(circle at 48% 42%,#f4b0b4,#a84257 58%,#5f2132)}
-.light{position:absolute;width:5px;height:5px;border-radius:50%;background:#ffd39b;box-shadow:0 0 10px 3px #ffc978;animation:glow 2.5s ease-in-out infinite}.g1{left:31%;bottom:23%}.g2{left:64%;bottom:31%;animation-delay:.5s}.g3{left:35%;bottom:49%;animation-delay:1s}.g4{left:66%;bottom:56%;animation-delay:1.4s}.g5{left:50%;bottom:18%;animation-delay:1.8s}@keyframes glow{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.22)}}
-.content{position:relative;z-index:4;width:min(700px,100%);margin-right:min(20vw,150px);text-align:center}.kicker{font-size:14px;letter-spacing:.07em;color:#e8c8c9;margin-bottom:8px}h1{font-size:clamp(56px,12vw,92px);line-height:.95;margin:0;font-weight:850;text-shadow:0 8px 30px rgba(0,0,0,.45)}.date{margin-top:12px;font-size:clamp(22px,5vw,34px);font-weight:750;letter-spacing:.1em;color:#ffd8c8}.tagline{margin:18px auto 26px;max-width:580px;font-size:clamp(17px,3.9vw,23px);line-height:1.8;color:#faece7}
-.card{width:100%;padding:20px 17px 18px;border-radius:28px;background:linear-gradient(180deg,rgba(32,17,37,.66),rgba(17,9,22,.86));border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 25px 70px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.05)}.card-title{font-size:15px;color:#e8cdca;margin-bottom:15px}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;direction:ltr}.unit{padding:16px 5px 13px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.085);direction:rtl}.num{display:block;font-size:clamp(31px,7.5vw,54px);font-weight:850;line-height:1;font-variant-numeric:tabular-nums}.label{display:block;margin-top:9px;font-size:12px;color:#d7c1c2}.message{margin-top:16px;padding-top:15px;border-top:1px solid rgba(255,255,255,.09);min-height:52px;display:flex;align-items:center;justify-content:center;font-size:clamp(15px,3.5vw,19px);line-height:1.7;color:#f4dfdb;transition:.35s}.footer{margin-top:15px;color:#cbb2b4;font-size:13px}
-@media(max-width:700px){.scene{align-items:flex-end;padding-top:68px;min-height:100svh}.content{margin-right:0;width:100%;padding-bottom:4px}.rose-wrap{width:54vw;height:48vh;left:-78px;bottom:-8px;opacity:.45}.moon{width:50px;height:50px;box-shadow:-10px 0 0 #ffd7c6;top:5%;right:8%}.tagline{max-width:92%;margin-bottom:22px}.card{border-radius:24px;padding:17px 12px 15px}.countdown{gap:7px}.unit{border-radius:17px;padding:14px 3px 12px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09070d">
+  <title>موعدنا</title>
+  <style>
+    :root{
+      --bg:#09070d;
+      --text:#fff7f2;
+      --muted:#d8c4c2;
+      --rose:#d95f78;
+      --gold:#ffd3a8;
+      --glass:rgba(18,12,24,.58);
+      --border:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+    body{overflow-x:hidden}
+    button{font:inherit}
+
+    .page{
+      min-height:100svh;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:calc(24px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));
+      isolation:isolate;
+      background:
+        radial-gradient(circle at 78% 17%,rgba(213,95,128,.18),transparent 24%),
+        radial-gradient(circle at 20% 80%,rgba(110,45,89,.24),transparent 32%),
+        linear-gradient(180deg,#08060b 0%,#17101d 48%,#0b0710 100%);
+    }
+    .page:before{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,.015),transparent 30%,rgba(0,0,0,.35));
+      pointer-events:none;
+      z-index:-1;
+    }
+    .aurora{
+      position:absolute;
+      width:70vw;height:70vw;
+      max-width:760px;max-height:760px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.22;
+      background:radial-gradient(circle,rgba(204,86,126,.55),transparent 66%);
+      left:-22vw;bottom:-25vw;
+      animation:drift 12s ease-in-out infinite alternate;
+      z-index:-2;
+    }
+    @keyframes drift{to{transform:translate(7vw,-5vw) scale(1.08)}}
+
+    .stars{position:absolute;inset:0;pointer-events:none;z-index:-1}
+    .star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.9);animation:twinkle 3.4s ease-in-out infinite}
+    @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.75)}50%{opacity:.95;transform:scale(1.3)}}
+
+    .moon{
+      position:absolute;top:7%;right:7%;width:66px;height:66px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,#fff5e9 0 22%,#f7d8c0 52%,#d8a88e 100%);
+      box-shadow:0 0 40px rgba(255,218,185,.22),0 0 90px rgba(255,191,161,.12);
+      opacity:.92;
+    }
+    .moon:after{content:"";position:absolute;inset:-2px 0 0 16px;border-radius:50%;background:#0c0910}
+
+    .layout{width:min(1120px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);gap:clamp(30px,6vw,86px);align-items:center}
+
+    .copy{position:relative;z-index:3}
+    .eyebrow{font-size:14px;color:#e7c6c4;letter-spacing:.08em;margin-bottom:12px}
+    h1{margin:0;font-size:clamp(68px,10vw,124px);line-height:.9;font-weight:900;letter-spacing:-.04em;text-shadow:0 16px 44px rgba(0,0,0,.4)}
+    .date{margin-top:18px;font-size:clamp(21px,3vw,32px);font-weight:800;letter-spacing:.14em;color:var(--gold)}
+    .lead{max-width:620px;margin:22px 0 30px;font-size:clamp(18px,2.4vw,25px);line-height:1.9;color:#f7e9e4}
+
+    .count-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:22px;
+      background:linear-gradient(180deg,rgba(33,20,39,.68),rgba(14,9,18,.82));
+      box-shadow:0 30px 90px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.06);
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+    }
+    .count-card:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 28%);pointer-events:none}
+    .count-title{position:relative;text-align:center;font-size:14px;color:#dfc9c8;margin-bottom:16px}
+    .countdown{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;direction:ltr}
+    .unit{direction:rtl;padding:18px 4px 14px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);text-align:center}
+    .num{display:block;font-size:clamp(34px,5.5vw,58px);line-height:1;font-weight:900;font-variant-numeric:tabular-nums}
+    .label{display:block;margin-top:10px;font-size:12px;color:#ceb9b8}
+    .message{position:relative;min-height:62px;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:17px;padding:16px 10px 0;border-top:1px solid rgba(255,255,255,.09);font-size:clamp(15px,2vw,18px);line-height:1.7;color:#f1ddda;transition:.35s ease}
+    .signature{margin-top:13px;text-align:center;color:#bda9aa;font-size:12px}
+
+    .rose-stage{position:relative;min-height:620px;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 35px 55px rgba(0,0,0,.55))}
+    .dome{position:absolute;left:8%;right:8%;bottom:68px;height:510px;border-radius:48% 48% 15% 15%/35% 35% 9% 9%;border:1px solid rgba(255,255,255,.3);background:linear-gradient(105deg,rgba(255,255,255,.09),rgba(255,255,255,.015) 38%,rgba(255,255,255,.055) 70%,rgba(255,255,255,.02));box-shadow:inset 20px 0 40px rgba(255,255,255,.06),inset -20px 0 30px rgba(255,255,255,.025),0 0 45px rgba(217,95,120,.08);overflow:hidden}
+    .dome:before{content:"";position:absolute;top:7%;left:16%;width:9%;height:68%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.32),transparent 82%);filter:blur(2px);transform:rotate(6deg)}
+    .dome:after{content:"";position:absolute;inset:auto 10% 3% 10%;height:28%;border-radius:50%;background:radial-gradient(ellipse,rgba(229,95,120,.16),transparent 70%)}
+    .base{position:absolute;left:1%;right:1%;bottom:28px;height:86px;border-radius:50%;background:linear-gradient(180deg,#5b3530 0%,#2c1818 42%,#0d0809 100%);box-shadow:0 22px 35px rgba(0,0,0,.56),inset 0 3px 6px rgba(255,224,190,.18)}
+    .base:after{content:"";position:absolute;left:10%;right:10%;top:16%;height:18%;border-radius:50%;background:rgba(255,255,255,.08);filter:blur(2px)}
+
+    .stem{position:absolute;bottom:125px;left:50%;width:7px;height:310px;border-radius:8px;background:linear-gradient(90deg,#132617,#4d7041 46%,#162c19);transform:translateX(-50%) rotate(-2deg);z-index:2}
+    .thorn{position:absolute;width:22px;height:10px;background:#27452a;clip-path:polygon(0 50%,100% 0,72% 100%);z-index:3}
+    .t1{left:49%;bottom:250px;transform:rotate(15deg)}.t2{left:44%;bottom:320px;transform:scaleX(-1) rotate(18deg)}
+    .leaf{position:absolute;width:105px;height:50px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#4b784b,#1e3a26 58%,#102116);box-shadow:inset 10px 7px 16px rgba(255,255,255,.05),0 8px 18px rgba(0,0,0,.22);z-index:3}
+    .leaf:after{content:"";position:absolute;left:12%;right:10%;top:51%;height:1px;background:rgba(213,239,196,.22);transform:rotate(-12deg)}
+    .l1{left:49%;bottom:330px;transform:rotate(-24deg)}
+    .l2{left:23%;bottom:246px;transform:scaleX(-1) rotate(-28deg)}
+    .l3{left:48%;bottom:194px;transform:rotate(-17deg) scale(.82)}
+
+    .flower{position:absolute;left:50%;bottom:414px;width:190px;height:160px;transform:translateX(-50%);z-index:5;filter:drop-shadow(0 16px 16px rgba(0,0,0,.38))}
+    .petal{position:absolute;left:50%;top:54%;width:96px;height:82px;margin:-41px 0 0 -48px;border-radius:63% 37% 62% 38%;transform-origin:center;background:radial-gradient(circle at 62% 28%,#ffbdc3 0 12%,#df6a7d 38%,#a83953 68%,#632136 100%);box-shadow:inset 8px 8px 16px rgba(255,255,255,.08),inset -10px -9px 18px rgba(73,16,35,.25)}
+    .p1{transform:rotate(0deg) translateY(-31px)}.p2{transform:rotate(50deg) translateY(-31px)}.p3{transform:rotate(100deg) translateY(-31px)}.p4{transform:rotate(150deg) translateY(-31px)}.p5{transform:rotate(200deg) translateY(-31px)}.p6{transform:rotate(250deg) translateY(-31px)}.p7{transform:rotate(300deg) translateY(-31px)}
+    .inner{position:absolute;left:50%;top:54%;width:98px;height:86px;transform:translate(-50%,-50%);border-radius:55% 45% 54% 46%;background:radial-gradient(circle at 46% 43%,#ffadb8 0 9%,#c74661 34%,#7f2941 68%,#4d1728 100%);box-shadow:inset 8px 6px 13px rgba(255,255,255,.08)}
+    .inner:before,.inner:after{content:"";position:absolute;width:52px;height:49px;border-radius:70% 30% 70% 30%;background:linear-gradient(145deg,#e8677c,#8f2e49)}
+    .inner:before{left:8px;top:19px;transform:rotate(28deg)}.inner:after{right:8px;top:13px;transform:rotate(150deg)}
+    .core{position:absolute;left:50%;top:54%;width:34px;height:34px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 42% 38%,#ffb7c0,#9f304b 65%,#54182a);z-index:7}
+
+    .spark{position:absolute;width:5px;height:5px;border-radius:50%;background:#ffd7a4;box-shadow:0 0 12px 4px rgba(255,198,130,.75);animation:float 4s ease-in-out infinite;z-index:7}
+    .s1{left:27%;bottom:210px}.s2{left:64%;bottom:270px;animation-delay:.8s}.s3{left:34%;bottom:380px;animation-delay:1.5s}.s4{left:68%;bottom:420px;animation-delay:2.2s}.s5{left:48%;bottom:165px;animation-delay:2.8s}
+    @keyframes float{0%,100%{opacity:.25;transform:translateY(6px) scale(.8)}50%{opacity:1;transform:translateY(-10px) scale(1.25)}}
+
+    .meeting-screen{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 35%,rgba(218,86,123,.25),transparent 28%),linear-gradient(180deg,#09070d,#1b0f1e)}
+    .meeting-screen.show{display:flex}
+    .meeting-screen h2{font-size:clamp(56px,12vw,110px);margin:0 0 18px}.meeting-screen p{font-size:clamp(18px,4vw,28px);line-height:1.8;color:#f5dfdc}
+
+    @media(max-width:860px){
+      .page{align-items:flex-start;padding-top:calc(28px + env(safe-area-inset-top))}
+      .layout{grid-template-columns:1fr;gap:12px}
+      .copy{text-align:center;order:1}
+      .rose-stage{order:2;min-height:410px;margin-top:-16px}
+      .lead{margin-left:auto;margin-right:auto;margin-bottom:20px}
+      .count-card{padding:16px 12px 15px;border-radius:25px}
+      .countdown{gap:7px}
+      .unit{padding:15px 3px 12px;border-radius:17px}
+      .rose-stage{transform:scale(.75);transform-origin:top center;margin-bottom:-150px}
+      .moon{width:52px;height:52px;top:4%;right:7%}.moon:after{inset:-2px 0 0 13px}
+    }
+    @media(max-width:430px){
+      h1{font-size:70px}.date{font-size:22px}.lead{font-size:17px;line-height:1.75;margin-top:15px}
+      .count-card{margin-top:4px}.num{font-size:34px}.label{font-size:11px}
+      .message{font-size:14px;min-height:58px}.rose-stage{transform:scale(.68);margin-top:-24px;margin-bottom:-180px}
+    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+  </style>
 </head>
 <body>
-<div class="scene">
-<div class="stars" id="stars"></div><div class="moon"></div>
-<div class="rose-wrap"><div class="dome"><div class="stem"></div><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="flower"><i class="petal-shape p1"></i><i class="petal-shape p2"></i><i class="petal-shape p3"></i><i class="petal-shape p4"></i><i class="petal-shape p5"></i><i class="petal-shape p6"></i><i class="core"></i></div><i class="light g1"></i><i class="light g2"></i><i class="light g3"></i><i class="light g4"></i><i class="light g5"></i></div><div class="base"></div></div>
-<main class="content"><div class="kicker">قريبًا تبدأ الحكاية</div><h1>موعدنا</h1><div class="date">01.08.2026</div><div class="tagline">كل يوم يمرّ… يقربنا أكثر من لحظة انتظرناها بحماس 🌹</div><section class="card"><div class="card-title" id="title">الوقت الباقي حتى موعدنا</div><div class="countdown"><div class="unit"><span class="num" id="days">00</span><span class="label">يوم</span></div><div class="unit"><span class="num" id="hours">00</span><span class="label">ساعة</span></div><div class="unit"><span class="num" id="minutes">00</span><span class="label">دقيقة</span></div><div class="unit"><span class="num" id="seconds">00</span><span class="label">ثانية</span></div></div><div class="message" id="message">بقي القليل… واللحظات الحلوة صارت أقرب.</div></section><div class="footer">01.08 — موعد لبداية جميلة 🌹</div></main>
-</div>
-<script>
-(()=>{const target=new Date(2026,7,1,0,0,0).getTime(),D=document.getElementById('days'),H=document.getElementById('hours'),M=document.getElementById('minutes'),S=document.getElementById('seconds'),pad=n=>String(n).padStart(2,'0');function tick(){let x=target-Date.now();if(x<=0){D.textContent=H.textContent=M.textContent=S.textContent='00';document.getElementById('title').textContent='وصل موعدنا';document.getElementById('message').textContent='وأخيرًا وصل اليوم… خلينا نبدأ أجمل فصل 🌹';return}const d=Math.floor(x/86400000);x%=86400000;const h=Math.floor(x/3600000);x%=3600000;const m=Math.floor(x/60000),s=Math.floor(x%60000/1000);D.textContent=pad(d);H.textContent=pad(h);M.textContent=pad(m);S.textContent=pad(s)}tick();setInterval(tick,1000);const msgs=['بقي القليل… واللحظات الحلوة صارت أقرب.','كل ثانية تمرّ… تقربنا من أول جلسة حقيقية.','قريبًا سنحكي براحتنا… ونترك البداية تأخذ وقتها.','أجمل البدايات أحيانًا تبدأ بموعد بسيط.','العد التنازلي شغال… والحماس عم يزيد.','موعدنا صار أقرب مما كان… والباقي أجمل.'],msg=document.getElementById('message');let i=0;setInterval(()=>{msg.style.opacity='0';msg.style.transform='translateY(5px)';setTimeout(()=>{i=(i+1)%msgs.length;msg.textContent=msgs[i];msg.style.opacity='1';msg.style.transform='translateY(0)'},350)},5000);const stars=document.getElementById('stars');for(let i=0;i<42;i++){const s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*72+'%';s.style.animationDelay=Math.random()*3.4+'s';stars.appendChild(s)}})();
-</script>
+  <main class="page" id="page">
+    <div class="aurora"></div>
+    <div class="stars" id="stars"></div>
+    <div class="moon" aria-hidden="true"></div>
+
+    <div class="layout">
+      <section class="copy">
+        <div class="eyebrow">باقي القليل على لحظة جميلة</div>
+        <h1>موعدنا</h1>
+        <div class="date">01.08.2026</div>
+        <p class="lead">كل يوم يمرّ، يجعل المسافة أقصر… ويقرّبنا أكثر من أول لحظة تجمعنا.</p>
+
+        <section class="count-card" aria-label="العد التنازلي">
+          <div class="count-title" id="countTitle">الوقت الباقي حتى موعدنا</div>
+          <div class="countdown">
+            <div class="unit"><span class="num" id="days">00</span><span class="label">يوم</span></div>
+            <div class="unit"><span class="num" id="hours">00</span><span class="label">ساعة</span></div>
+            <div class="unit"><span class="num" id="minutes">00</span><span class="label">دقيقة</span></div>
+            <div class="unit"><span class="num" id="seconds">00</span><span class="label">ثانية</span></div>
+          </div>
+          <div class="message" id="message">كل ثانية تمرّ… تقرّبنا من بداية حلوة.</div>
+          <div class="signature">01.08 — تاريخ صار له معنى 🌹</div>
+        </section>
+      </section>
+
+      <section class="rose-stage" aria-label="وردة جوري تحت قبة زجاجية">
+        <div class="dome"></div>
+        <div class="stem"></div>
+        <i class="thorn t1"></i><i class="thorn t2"></i>
+        <i class="leaf l1"></i><i class="leaf l2"></i><i class="leaf l3"></i>
+        <div class="flower">
+          <i class="petal p1"></i><i class="petal p2"></i><i class="petal p3"></i><i class="petal p4"></i>
+          <i class="petal p5"></i><i class="petal p6"></i><i class="petal p7"></i>
+          <i class="inner"></i><i class="core"></i>
+        </div>
+        <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
+        <div class="base"></div>
+      </section>
+    </div>
+  </main>
+
+  <section class="meeting-screen" id="meetingScreen">
+    <div><h2>وصل موعدنا</h2><p>وأخيرًا صار اليوم اللي كنا نعدّ له…<br>خلّينا نبدأ أجمل فصل 🌹</p></div>
+  </section>
+
+  <script>
+    (() => {
+      const target = new Date(2026, 7, 1, 0, 0, 0).getTime();
+      const ids = ['days','hours','minutes','seconds'];
+      const nodes = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+      const pad = n => String(n).padStart(2, '0');
+
+      function updateCountdown(){
+        let left = target - Date.now();
+        if(left <= 0){
+          ids.forEach(id => nodes[id].textContent = '00');
+          document.getElementById('countTitle').textContent = 'وصل موعدنا';
+          document.getElementById('message').textContent = 'وأخيرًا وصل اليوم… خلّينا نبدأ أجمل فصل 🌹';
+          document.getElementById('meetingScreen').classList.add('show');
+          return;
+        }
+        const days = Math.floor(left / 86400000); left %= 86400000;
+        const hours = Math.floor(left / 3600000); left %= 3600000;
+        const minutes = Math.floor(left / 60000);
+        const seconds = Math.floor((left % 60000) / 1000);
+        nodes.days.textContent = pad(days);
+        nodes.hours.textContent = pad(hours);
+        nodes.minutes.textContent = pad(minutes);
+        nodes.seconds.textContent = pad(seconds);
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      const messages = [
+        'كل ثانية تمرّ… تقرّبنا من بداية حلوة.',
+        'قريبًا، سيصبح هذا الانتظار ذكرى جميلة.',
+        'بعض المواعيد لا تُنسى… لأنها تبدأ قبل أن تصل.',
+        'المسافة عم تقصر، والحماس عم يكبر.',
+        'أجمل الحكايات تبدأ بلحظة بسيطة وصادقة.',
+        'قريبًا سنحكي براحتنا… ويصير الوقت إلنا.'
+      ];
+      const message = document.getElementById('message');
+      let messageIndex = 0;
+      setInterval(() => {
+        message.style.opacity = '0';
+        message.style.transform = 'translateY(6px)';
+        setTimeout(() => {
+          messageIndex = (messageIndex + 1) % messages.length;
+          message.textContent = messages[messageIndex];
+          message.style.opacity = '1';
+          message.style.transform = 'translateY(0)';
+        }, 350);
+      }, 5200);
+
+      const stars = document.getElementById('stars');
+      for(let i = 0; i < 34; i++){
+        const star = document.createElement('i');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 78 + '%';
+        star.style.animationDelay = Math.random() * 3.4 + 's';
+        star.style.opacity = .25 + Math.random() * .6;
+        stars.appendChild(star);
+      }
+    })();
+  </script>
 </body>
 </html>
