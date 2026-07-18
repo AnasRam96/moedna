@@ -275,15 +275,44 @@ section{ display:flex; flex-direction:column; align-items:center; text-align:cen
 .finale.show .fin1{ opacity:1; filter:blur(0); transform:scale(1); transition-delay:.9s; }
 .finale.s2 .fin1{ opacity:0; filter:blur(8px); transform:scale(.97); transition-delay:0s; transition-duration:1.5s; }
 .finale.s2 .fin2{ opacity:1; filter:blur(0); transform:scale(1); transition-delay:.7s; }
-.fin3, .fin4{
-  font-weight:300;
+.fin3{
+  font-weight:300; color:var(--cream-dim);
+  font-size:clamp(1rem, 4.2vw, 1.25rem);
   opacity:0; filter:blur(6px);
   transition:opacity 2s ease, filter 2s ease;
 }
-.fin3{ font-size:clamp(1rem, 4.2vw, 1.25rem); color:var(--cream-dim); }
-.fin4{ font-size:clamp(.9rem, 3.8vw, 1.1rem); color:var(--gold); }
 .finale.s3 .fin3{ opacity:1; filter:blur(0); }
-.finale.s4 .fin4{ opacity:.95; filter:blur(0); }
+
+/* the envelope */
+.fin-env{
+  margin-top:clamp(10px, 2.4vh, 22px);
+  background:none; border:0; cursor:pointer;
+  pointer-events:auto;
+  font-family:var(--font-body);
+  opacity:0; filter:blur(6px); transform:translateY(8px);
+  transition:opacity 2s ease, filter 2s ease, transform 2s ease;
+}
+.finale.s4 .fin-env{
+  opacity:1; filter:blur(0); transform:translateY(0);
+  animation:envFloat 4.5s ease-in-out infinite;
+}
+@keyframes envFloat{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-6px); }
+}
+.fin-env svg{ display:block; margin-inline:auto; filter:drop-shadow(0 0 14px rgba(216,181,120,.3)); }
+.fin-env em{
+  display:block; margin-top:10px;
+  font-style:normal; font-weight:400;
+  font-size:clamp(.85rem, 3.6vw, 1rem);
+  color:var(--gold);
+}
+
+/* golden petals for the celebration shower */
+.petals i.gold{
+  background:linear-gradient(135deg, #f0dca8 0%, #d8b578 55%, #8a6a3c 100%);
+  box-shadow:inset -2px -2px 4px rgba(90,60,20,.5), 0 0 8px rgba(216,181,120,.4);
+}
 
 .finale::before{ /* warm bloom behind the words */
   content:""; position:absolute; inset:0; margin:auto;
@@ -879,11 +908,33 @@ body.done .dome-wrap::after{ opacity:1; }
 <div class="finale" id="finale" aria-live="polite">
   <div class="fin-stack">
     <div class="fin-swap">
-      <h2 class="fin1">انتهى الانتظار.</h2>
-      <h2 class="fin2">وصل موعدنا 🌹</h2>
+      <h2 class="fin1">وصل يومنا</h2>
+      <h2 class="fin2">والآن… لنصنع أجمل ذكرى</h2>
     </div>
-    <p class="fin3">شكرًا لأنكِ أعطيتِ الوقتَ وقته.</p>
-    <p class="fin4">أول فرابتشينو… عليّ ☕</p>
+    <p class="fin3">انتهى الانتظار، وبدأ أجمل يوم لنا 🌹</p>
+    <button class="fin-env" id="finEnv" aria-label="افتحي الرسالة">
+      <svg viewBox="0 0 64 46" width="76" height="55" aria-hidden="true">
+        <rect x="2" y="8" width="60" height="36" rx="7"
+              fill="rgba(240,231,214,.07)" stroke="#d8b578" stroke-width="1.5"/>
+        <path d="M3 12 L32 32 L61 12" fill="none" stroke="#d8b578"
+              stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="32" cy="26" r="4" fill="#a92038" stroke="#e9cf95" stroke-width=".8"/>
+      </svg>
+      <em>رسالة لكِ… المسيها</em>
+    </button>
+  </div>
+</div>
+
+<!-- ============ the letter behind the envelope ============ -->
+<div class="secret" id="letter" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="secret-card">
+    <p>
+      كل الأيام التي انتظرتُها<br>
+      كانت تقودني إلى هذه اللحظة معكِ.<br>
+      اليوم ليس مجرد موعد…<br>
+      اليوم بدايةُ رسمِ طريقنا. 🌹
+    </p>
+    <span>المسي الشاشة للإغلاق</span>
   </div>
 </div>
 
@@ -942,6 +993,7 @@ body.done .dome-wrap::after{ opacity:1; }
   /* ---------- starfield ---------- */
   var cv = document.getElementById("stars"), cx = cv.getContext("2d");
   var stars = [], W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var celebrate = false;   /* stars begin to travel when the day arrives */
 
   function seed(){
     W = cv.clientWidth; H = cv.clientHeight;
@@ -966,8 +1018,9 @@ body.done .dome-wrap::after{ opacity:1; }
     cx.clearRect(0, 0, W, H);
     for (var i = 0; i < stars.length; i++){
       var s = stars[i];
-      s.p += s.v;
-      s.x -= s.d; if (s.x < -2) s.x = W + 2;
+      s.p += s.v * (celebrate ? 2.2 : 1);
+      s.x -= s.d * (celebrate ? 46 : 1);
+      if (s.x < -2) s.x = W + 2;
       var a = 0.25 + 0.6 * (0.5 + 0.5 * Math.sin(s.p));
       cx.beginPath();
       cx.arc(s.x, s.y, s.r, 0, 6.2832);
@@ -1079,15 +1132,17 @@ body.done .dome-wrap::after{ opacity:1; }
         finished = true;
         countBox.classList.add("is-done");
         document.body.classList.add("done");
+        celebrate = true;          /* stars start to travel */
+        petalShower();             /* petals rain down       */
         fillPetals(true);
         var stage = document.querySelector(".rose-stage");
         setTimeout(function(){
           stage.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
         }, 900);
-        setTimeout(function(){ finale.classList.add("show"); }, 2600);
-        setTimeout(function(){ finale.classList.add("s2");   }, 6400);
-        setTimeout(function(){ finale.classList.add("s3");   }, 8800);
-        setTimeout(function(){ finale.classList.add("s4");   }, 11400);
+        setTimeout(function(){ finale.classList.add("show"); }, 2600);   /* وصل يومنا */
+        setTimeout(function(){ finale.classList.add("s2");   }, 5400);   /* لنصنع أجمل ذكرى */
+        setTimeout(function(){ finale.classList.add("s3");   }, 7900);   /* بدأ أجمل يوم لنا */
+        setTimeout(function(){ finale.classList.add("s4");   }, 10300);  /* المغلف */
       }
       return;
     }
@@ -1116,6 +1171,37 @@ body.done .dome-wrap::after{ opacity:1; }
     }
   }
   fillPetals(Date.now() >= target);
+
+  /* ---------- celebration petal shower ---------- */
+  function petalShower(){
+    if (reduced) return;
+    var pl = document.getElementById("petals");
+    for (var i = 0; i < 18; i++){
+      var pe = document.createElement("i");
+      var ps = 9 + Math.random() * 10;
+      pe.style.width = ps.toFixed(1) + "px";
+      pe.style.height = (ps * 0.78).toFixed(1) + "px";
+      pe.style.left = (Math.random() * 100).toFixed(1) + "vw";
+      pe.style.setProperty("--pt", (6 + Math.random() * 7).toFixed(1) + "s");
+      pe.style.setProperty("--po", (0.5 + Math.random() * 0.35).toFixed(2));
+      pe.style.setProperty("--sw", (-(2 + Math.random() * 13)).toFixed(0) + "vw");
+      pe.style.setProperty("--sw2", ((Math.random() * 16) - 8).toFixed(0) + "vw");
+      pe.style.animationDelay = (Math.random() * 5).toFixed(1) + "s";
+      if (Math.random() < 0.3) pe.className = "gold";   /* a few golden ones */
+      pl.appendChild(pe);
+    }
+  }
+
+  /* ---------- the envelope & its letter ---------- */
+  var letter = document.getElementById("letter");
+  document.getElementById("finEnv").addEventListener("click", function(){
+    letter.classList.add("on");
+    letter.setAttribute("aria-hidden", "false");
+  });
+  letter.addEventListener("click", function(){
+    letter.classList.remove("on");
+    letter.setAttribute("aria-hidden", "true");
+  });
 
   /* ---------- hidden message : long press on the dome ---------- */
   var wrap = document.querySelector(".dome-wrap");
